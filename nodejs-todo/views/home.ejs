@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="/css/semantic.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="ui menu">
+
+            <div class="header item">
+                Home
+            </div>
+            <a class="item">
+                About Us
+            </a>
+            <a class="item">
+                Our Services
+            </a>
+            <a class="item">
+                Contact Us
+            </a>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="ui container">
+            <form action="/add" class="ui form" method="POST">
+
+                <div class="ui three fields">
+                    <div class="field">
+                        <label for="title" class="ui header green">Enter Task Title</label>
+                        <input type="text" name="title">
+                    </div>
+
+                    <div class="field">
+                        <label for="disc" class="ui header green">Enter Task Discription</label>
+                        <input type="text" name="disc">
+                    </div>
+
+                    <div class="field">
+                        <label for="status" class="ui header green">Enter Task Status</label>
+                        <select name="status" id="">
+                            <option value="none">Select status</option>
+                            <option value="Completed">Task Completed</option>
+                            <option value="Pending">Task Pending</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="ui fluid field">
+                    <input type="submit" value="submit" class="ui button green fluid">
+                </div>
+            </form>
+
+
+            <br>
+            <br>
+
+            <table class="ui green table">
+                <thead>
+                    <tr>
+                        <th>Task Title</th>
+                        <th>Task Discription</th>
+                        <th>Status</th>
+                        <th>UPDATE</th>
+                        <th>DELETE</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+
+                    <% tasks.forEach((task)=>{ %>
+                        <tr>
+                            <td>
+                                <%- task.title %>
+                            </td>
+
+                            <td>
+                                <%- task.disc %>
+                            </td>
+
+                            <td>
+                                <%- task.status %>
+                            </td>
+
+                            <td><a class="ui green button" href="/edit/<%= task._id %>"><i class="edit icon"></i></a></td>
+
+                            <td><a class="ui red button" href="/delete/<%= task._id %>"><i class="minus icon"></i></a></td>
+
+
+                        </tr>
+                        <% }); %>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
